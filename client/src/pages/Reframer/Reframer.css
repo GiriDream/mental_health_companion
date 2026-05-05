@@ -1,0 +1,204 @@
+.reframer-container {
+  min-height: 100vh;
+  background: #071210;
+  color: #e8f5ee;
+  font-family: 'DM Sans', sans-serif;
+  padding: 0 0 60px 0;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.reframer-container::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.06;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.reframer-container::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(7,18,16,0.97), rgba(7,18,16,0.88));
+  z-index: 0;
+  pointer-events: none;
+}
+
+.reframer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 32px;
+  border-bottom: 1px solid rgba(78,202,139,0.07);
+  background: rgba(7,18,16,0.8);
+  backdrop-filter: blur(20px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  animation: fadeUp 0.5s ease;
+}
+
+.reframer-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.reframer-content {
+  padding: 32px;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.6s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.reframer-intro {
+  text-align: center;
+}
+
+.reframer-intro h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  color: #4eca8b;
+  margin-bottom: 8px;
+}
+
+.reframer-intro p {
+  color: rgba(232, 245, 238, 0.4);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.reframer-input-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(78, 202, 139, 0.1);
+  border-radius: 24px;
+  padding: 24px;
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.reframer-input-card label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e8f5ee;
+  letter-spacing: 0.5px;
+}
+
+.reframer-input-card textarea {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(78, 202, 139, 0.15);
+  border-radius: 14px;
+  color: #e8f5ee;
+  padding: 16px;
+  font-size: 15px;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  resize: none;
+  transition: all 0.25s;
+}
+
+.reframer-input-card textarea:focus {
+  border-color: #4eca8b;
+  background: rgba(78, 202, 139, 0.05);
+  box-shadow: 0 0 0 3px rgba(78, 202, 139, 0.08);
+}
+
+.reframer-input-card textarea::placeholder {
+  color: rgba(232, 245, 238, 0.2);
+}
+
+.reframe-btn {
+  background: linear-gradient(135deg, #4eca8b, #2dd4bf);
+  border: none;
+  border-radius: 14px;
+  color: #071210;
+  padding: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(78, 202, 139, 0.2);
+  transition: all 0.3s;
+}
+
+.reframe-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(78, 202, 139, 0.3);
+}
+
+.reframe-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.reframer-result-card {
+  background: linear-gradient(180deg, rgba(78, 202, 139, 0.05), rgba(45, 212, 191, 0.02));
+  border: 1px solid rgba(78, 202, 139, 0.2);
+  border-radius: 24px;
+  padding: 28px;
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: fadeUp 0.5s ease;
+}
+
+.result-section h4 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(232, 245, 238, 0.4);
+  margin-bottom: 12px;
+}
+
+.distortions-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.distortion-pill {
+  background: rgba(248, 113, 113, 0.15);
+  color: #fca5a5;
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.analysis p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(232, 245, 238, 0.8);
+}
+
+.reframe {
+  background: rgba(78, 202, 139, 0.08);
+  padding: 20px;
+  border-radius: 16px;
+  border-left: 4px solid #4eca8b;
+}
+
+.reframe h4 {
+  color: #4eca8b;
+}
+
+.reframe-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-style: italic;
+  color: #e8f5ee;
+  line-height: 1.5;
+}

@@ -1,0 +1,609 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+
+.progress-container {
+  min-height: 100vh;
+  background: #071210;
+  color: #e8f5ee;
+  font-family: 'DM Sans', sans-serif;
+  padding: 0 0 60px 0;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.progress-container::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.06;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.progress-container::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(7,18,16,0.97), rgba(7,18,16,0.88));
+  z-index: 0;
+  pointer-events: none;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 32px;
+  border-bottom: 1px solid rgba(78,202,139,0.07);
+  background: rgba(7,18,16,0.8);
+  backdrop-filter: blur(20px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  animation: fadeUp 0.5s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.progress-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.back-btn {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(78,202,139,0.1);
+  border-radius: 10px;
+  color: rgba(232,245,238,0.4);
+  padding: 8px 14px;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.back-btn:hover { background: rgba(78,202,139,0.06); color: #4eca8b; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 28px 32px 0;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.5s ease 0.1s both;
+}
+
+.stat-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(78,202,139,0.08);
+  border-radius: 22px;
+  padding: 22px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: all 0.25s;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 20%; right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(78,202,139,0.2), transparent);
+}
+
+.stat-card:hover {
+  border-color: rgba(78,202,139,0.18);
+  transform: translateY(-3px);
+}
+
+.stat-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: #4eca8b;
+}
+
+.stat-label {
+  font-size: 10px;
+  color: rgba(232,245,238,0.2);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
+
+.chart-section {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(78,202,139,0.07);
+  border-radius: 24px;
+  padding: 24px;
+  margin: 20px 32px 0;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.5s ease 0.2s both;
+  backdrop-filter: blur(10px);
+}
+
+.chart-section h3,
+.heatmap-section h3,
+.achievements-section h3,
+.recent-moods h3 {
+  font-size: 10px;
+  color: rgba(232,245,238,0.2);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.no-data {
+  text-align: center;
+  padding: 36px;
+  color: rgba(232,245,238,0.18);
+  font-size: 14px;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.recent-moods {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 32px 0;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.5s ease 0.3s both;
+}
+
+.mood-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(78,202,139,0.06);
+  border-radius: 18px;
+  padding: 16px 18px;
+  transition: all 0.25s;
+  backdrop-filter: blur(8px);
+}
+
+.mood-row:hover {
+  border-color: rgba(78,202,139,0.14);
+  transform: translateX(4px);
+}
+
+.mood-emoji-small { font-size: 26px; }
+
+.mood-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 80px;
+}
+
+.mood-name {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.mood-date {
+  font-size: 10px;
+  color: rgba(232,245,238,0.18);
+  margin-top: 3px;
+  letter-spacing: 0.3px;
+}
+
+.mood-score-bar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.mood-score-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1s ease;
+}
+
+.mood-score-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  color: rgba(232,245,238,0.2);
+  min-width: 38px;
+  text-align: right;
+}
+
+/* --- Heatmap Section --- */
+.heatmap-section {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(78,202,139,0.07);
+  border-radius: 24px;
+  padding: 24px;
+  margin: 20px 32px 0;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.5s ease 0.25s both;
+  backdrop-filter: blur(10px);
+}
+
+.heatmap-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.heatmap-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.heatmap-cell {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.heatmap-cell:hover {
+  transform: scale(1.2);
+  z-index: 2;
+  box-shadow: 0 0 8px rgba(78, 202, 139, 0.4);
+}
+
+.heatmap-cell.level-0 { background: rgba(255, 255, 255, 0.05); }
+.heatmap-cell.level-1 { background: rgba(248, 113, 113, 0.6); } /* Low Mood - Reddish */
+.heatmap-cell.level-2 { background: rgba(251, 191, 36, 0.6); }  /* Med-Low - Yellowish */
+.heatmap-cell.level-3 { background: rgba(78, 202, 139, 0.6); }  /* Good - Light Green */
+.heatmap-cell.level-4 { background: rgba(78, 202, 139, 1); }    /* Great - Bright Green */
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: rgba(232, 245, 238, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* --- Achievements Section --- */
+.achievements-section {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(78, 202, 139, 0.07);
+  border-radius: 24px;
+  padding: 24px;
+  margin: 20px 32px 0;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.5s ease 0.3s both;
+  backdrop-filter: blur(10px);
+}
+
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.badge-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 18px;
+  padding: 20px 14px;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+}
+
+.badge-card.earned {
+  background: linear-gradient(135deg, rgba(78, 202, 139, 0.1), rgba(45, 212, 191, 0.02));
+  border-color: rgba(78, 202, 139, 0.3);
+  box-shadow: 0 4px 20px rgba(78, 202, 139, 0.1);
+}
+
+.badge-card.earned:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(78, 202, 139, 0.2);
+}
+
+.badge-card.locked {
+  opacity: 0.6;
+  filter: grayscale(100%);
+}
+
+.badge-icon-wrapper {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-card.earned .badge-icon-wrapper {
+  background: rgba(78, 202, 139, 0.15);
+  box-shadow: 0 0 15px rgba(78, 202, 139, 0.3);
+}
+
+.badge-icon {
+  font-size: 24px;
+}
+
+.badge-card h4 {
+  margin: 0 0 6px 0;
+  font-size: 13px;
+  color: #e8f5ee;
+  font-weight: 600;
+}
+
+.badge-card p {
+  margin: 0;
+  font-size: 11px;
+  color: rgba(232, 245, 238, 0.4);
+  line-height: 1.4;
+}
+
+.lock-overlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 14px;
+  opacity: 0.5;
+}
+
+/* AI Insights Section */
+.insights-section {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(78, 202, 139, 0.07);
+  border-radius: 24px;
+  padding: 24px;
+  margin: 20px 32px 0;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.5s ease 0.15s both;
+  backdrop-filter: blur(10px);
+}
+
+.insights-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.insights-header h3 {
+  font-size: 10px;
+  color: rgba(232,245,238,0.2);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.generate-btn {
+  background: linear-gradient(135deg, #4eca8b 0%, #2dd4bf 100%);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 12px;
+  color: #071210;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 12px;
+  box-shadow: 0 4px 15px rgba(78, 202, 139, 0.2);
+}
+
+.generate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(78, 202, 139, 0.4);
+}
+
+.loading-text {
+  text-align: center;
+  color: rgba(232,245,238,0.5);
+  padding: 20px;
+  font-style: italic;
+  font-size: 14px;
+}
+
+.insights-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.insight-summary {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(232,245,238,0.9);
+  font-style: italic;
+  padding: 16px;
+  background: rgba(78, 202, 139, 0.05);
+  border-left: 4px solid #4eca8b;
+  border-radius: 0 12px 12px 0;
+  margin: 0;
+}
+
+.insight-themes {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.theme-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.theme-tag {
+  background: rgba(78, 202, 139, 0.1);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #4eca8b;
+  font-weight: 500;
+}
+
+.insight-suggestion {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 16px;
+  border-radius: 12px;
+  color: rgba(232,245,238,0.9);
+  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.insight-suggestion strong {
+  color: #4eca8b;
+}
+
+.proactive-alert {
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  padding: 16px;
+  border-radius: 12px;
+  margin-top: 8px;
+}
+
+.proactive-alert p {
+  margin: 0 0 12px 0;
+  color: #fca5a5;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* --- Export Button --- */
+.export-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(78, 202, 139, 0.2);
+  color: #4eca8b;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.export-btn:hover {
+  background: rgba(78, 202, 139, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(78, 202, 139, 0.2);
+}
+
+/* --- Print Styles --- */
+.print-header {
+  display: none; /* Hidden by default */
+}
+
+@media print {
+  /* Hide the UI cruft */
+  .progress-header, 
+  .back-btn, 
+  .export-btn, 
+  .sos-floating-btn,
+  nav, /* If any global nav exists */
+  .quick-actions /* If printed from another page */
+  {
+    display: none !important;
+  }
+
+  /* Force white background for printing */
+  body, html, .progress-container, #root {
+    background: white !important;
+    color: black !important;
+    height: auto !important;
+    min-height: auto !important;
+    padding: 0 !important;
+  }
+
+  /* Remove the dark overlay and image */
+  .progress-container::before,
+  .progress-container::after {
+    display: none !important;
+  }
+
+  /* Print Header */
+  .print-header {
+    display: block;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-top: 20px;
+  }
+  
+  .print-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    color: #071210;
+    margin: 0 0 10px 0;
+    font-size: 28px;
+  }
+  
+  .print-header p {
+    color: #555;
+    font-size: 14px;
+    margin: 0 0 20px 0;
+  }
+  
+  .print-header hr {
+    border: 0;
+    border-top: 2px solid #4eca8b;
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  /* Ensure cards print with borders and clear text */
+  .stat-card, .chart-card, .insights-section, .heatmap-section, .achievements-section {
+    background: white !important;
+    border: 1px solid #ccc !important;
+    color: black !important;
+    box-shadow: none !important;
+    break-inside: avoid; /* Prevent breaking across pages */
+    margin-bottom: 20px !important;
+  }
+
+  /* Fix text colors */
+  .stat-number, .chart-title, .insights-title, .insight-group h4, .heatmap-section h3, .achievements-section h3, .badge-card h4 {
+    color: #071210 !important;
+  }
+
+  .stat-label, .insight-group p, .heatmap-legend, .badge-card p {
+    color: #333 !important;
+  }
+
+  /* Force chart rendering */
+  .recharts-wrapper svg {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Force exact colors for specific colored elements if needed */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
