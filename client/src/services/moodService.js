@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = 'http://localhost:5000/api/mood';
+const API = 'https://mitra-backend.onrender.com/api/mood';
 
 export const getMoodHistory = async (token) => {
   const res = await axios.get(

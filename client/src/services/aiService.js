@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = 'http://localhost:5000/api/chat';
+const API = 'https://mitra-backend.onrender.com/api/chat';
 
 export const sendMessage = async (message, token) => {
   const res = await axios.post(

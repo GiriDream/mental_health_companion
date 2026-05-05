@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import axios from 'axios';
 import './Journal.css';
 
-const API = 'http://localhost:5000/api/journal';
+const API = 'https://mitra-backend.onrender.com/api/journal';
 
 function Journal() {
   const [journals, setJournals] = useState([]);
