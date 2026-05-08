@@ -8,7 +8,18 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
+// CORS - Allow all origins
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
+});
+
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 
 // Routes
@@ -16,12 +27,9 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/chat', require('./routes/chatRoutes'));
 app.use('/api/mood', require('./routes/moodRoutes'));
 app.use('/api/journal', require('./routes/journalRoutes'));
-app.use('/api/insights', require('./routes/insightRoutes'));
-app.use('/api/habits', require('./routes/habitRoutes'));
-app.use('/api/cbt', require('./routes/cbtRoutes'));
 
 app.get('/', (req, res) => {
-  res.send('AI Mental Health Server Running! ✅');
+  res.send('Mitra Backend Running! ✅');
 });
 
 const PORT = process.env.PORT || 5000;
